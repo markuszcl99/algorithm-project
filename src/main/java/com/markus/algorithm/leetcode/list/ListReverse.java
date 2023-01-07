@@ -8,23 +8,6 @@ package com.markus.algorithm.leetcode.list;
  * It's my honor to share what I've learned with you!
  */
 public class ListReverse {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
     public ListNode reverseList(ListNode head) {
         if (head == null || head.next == null) {

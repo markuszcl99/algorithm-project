@@ -10,24 +10,6 @@ import java.util.List;
  * It's my honor to share what I've learned with you!
  */
 public class CycleList {
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
-
     /**
      * 链表是否有环
      * 核心思想：快慢指针
