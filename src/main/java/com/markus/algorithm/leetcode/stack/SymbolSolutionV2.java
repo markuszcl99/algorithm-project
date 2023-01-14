@@ -74,23 +74,43 @@ public class SymbolSolutionV2 {
         }
         int sCursor = s.length() - 1;
         int tCursor = t.length() - 1;
-        while (sCursor >= 0 && tCursor >= 0) {
-            while (sCursor >= 0 && s.charAt(sCursor) == '#') {
-                sCursor -= 2;
+        int skipS = 0, skipT = 0;
+        while (sCursor >= 0 || tCursor >= 0) {
+            while (sCursor >= 0) {
+                if (s.charAt(sCursor) == '#') {
+                    skipS++;
+                    sCursor--;
+                } else if (skipS > 0) {
+                    skipS--;
+                    sCursor--;
+                } else {
+                    break;
+                }
             }
-            while (tCursor >= 0 && t.charAt(tCursor) == '#') {
-                tCursor -= 2;
+            while (tCursor >= 0) {
+                if (t.charAt(tCursor) == '#') {
+                    skipT++;
+                    tCursor--;
+                } else if (skipT > 0) {
+                    skipT--;
+                    tCursor--;
+                } else {
+                    break;
+                }
             }
-            if (sCursor < 0 || tCursor < 0) {
-                break;
-            }
-            if (s.charAt(sCursor) != t.charAt(tCursor)) {
-                return false;
+            if (sCursor >= 0 && tCursor >= 0) {
+                if (s.charAt(sCursor) != t.charAt(tCursor)) {
+                    return false;
+                }
+            } else {
+                if (sCursor >= 0 || tCursor >= 0) {
+                    return false;
+                }
             }
             sCursor--;
             tCursor--;
         }
-        return sCursor < 0 && tCursor < 0;
+        return true;
     }
 
     private boolean validString(String s) {
